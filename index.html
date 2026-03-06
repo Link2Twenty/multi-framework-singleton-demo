@@ -14,31 +14,38 @@
       body {
         font-family: sans-serif;
         margin: 0;
-        padding: 20px;
+        padding: 10px;
         background: #f4f4f4;
         box-sizing: border-box;
       }
 
       #app-container {
         display: grid;
-        grid-template-columns: 2fr 1fr;
-        gap: 20px;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
         height: 100%;
       }
 
       .trigger-container {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
         align-self: flex-start;
         gap: 10px;
+        max-height: 100%;
         overflow: auto;
       }
 
       .slot {
         border: 2px dashed #ccc;
-        padding: 10px;
+        padding: 5px;
         background: white;
         overflow: auto;
+      }
+
+      @media screen and (min-width: 768px) {
+        #app-container {
+          grid-template-columns: 2fr 350px;
+        }
       }
     </style>
   </head>
@@ -63,8 +70,8 @@
         app: () => import("./apps/react-wrapper/src/main.tsx"),
         activeWhen: "/",
         customProps: {
-          domElement: document.getElementById("react-slot"),
-        },
+          domElement: document.getElementById("react-slot")
+        }
       });
 
       registerApplication({
@@ -72,8 +79,8 @@
         app: () => import("./apps/react-trigger/main.tsx"),
         activeWhen: "/",
         customProps: {
-          domElement: document.getElementById("react-trigger-slot"),
-        },
+          domElement: document.getElementById("react-trigger-slot")
+        }
       });
 
       registerApplication({
@@ -81,8 +88,8 @@
         app: () => import("./apps/vanilla-trigger/main.ts"),
         activeWhen: "/",
         customProps: {
-          domElement: document.getElementById("vanilla-slot"),
-        },
+          domElement: document.getElementById("vanilla-slot")
+        }
       });
 
       registerApplication({
@@ -90,8 +97,8 @@
         app: () => import("./apps/preact-trigger/src/main.ts"),
         activeWhen: "/",
         customProps: {
-          domElement: document.getElementById("preact-slot"),
-        },
+          domElement: document.getElementById("preact-slot")
+        }
       });
 
       registerApplication({
@@ -99,8 +106,8 @@
         app: () => import("./apps/vue-trigger/src/main.ts"),
         activeWhen: "/",
         customProps: {
-          domElement: document.getElementById("vue-slot"),
-        },
+          domElement: document.getElementById("vue-slot")
+        }
       });
 
       registerApplication({
@@ -108,8 +115,8 @@
         app: () => import("./apps/solid-trigger/src/main.ts"),
         activeWhen: "/",
         customProps: {
-          domElement: document.getElementById("solid-slot"),
-        },
+          domElement: document.getElementById("solid-slot")
+        }
       });
 
       registerApplication({
@@ -117,8 +124,8 @@
         app: () => import("./apps/svelte-trigger/src/main.ts"),
         activeWhen: "/",
         customProps: {
-          domElement: document.getElementById("svelte-slot"),
-        },
+          domElement: document.getElementById("svelte-slot")
+        }
       });
 
       start();
