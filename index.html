@@ -14,31 +14,38 @@
       body {
         font-family: sans-serif;
         margin: 0;
-        padding: 20px;
+        padding: 10px;
         background: #f4f4f4;
         box-sizing: border-box;
       }
 
       #app-container {
         display: grid;
-        grid-template-columns: 2fr 1fr;
-        gap: 20px;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
         height: 100%;
       }
 
       .trigger-container {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
         align-self: flex-start;
         gap: 10px;
+        max-height: 100%;
         overflow: auto;
       }
 
       .slot {
         border: 2px dashed #ccc;
-        padding: 10px;
+        padding: 5px;
         background: white;
         overflow: auto;
+      }
+
+      @media screen and (min-width: 768px) {
+        #app-container {
+          grid-template-columns: 2fr 350px;
+        }
       }
     </style>
     <script type="module" crossorigin src="./assets/main.js"></script>
