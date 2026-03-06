@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Singleton Demo</title>
+    <style>
+      html,
+      body,
+      #app-container {
+        height: 100%;
+      }
+
+      body {
+        font-family: sans-serif;
+        margin: 0;
+        padding: 20px;
+        background: #f4f4f4;
+        box-sizing: border-box;
+      }
+
+      #app-container {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 20px;
+        height: 100%;
+      }
+
+      .trigger-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        align-self: flex-start;
+        gap: 10px;
+        overflow: auto;
+      }
+
+      .slot {
+        border: 2px dashed #ccc;
+        padding: 10px;
+        background: white;
+        overflow: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app-container">
+      <div class="trigger-container">
+        <div id="react-trigger-slot" class="slot"></div>
+        <div id="vanilla-slot" class="slot"></div>
+        <div id="preact-slot" class="slot"></div>
+        <div id="vue-slot" class="slot"></div>
+        <div id="solid-slot" class="slot"></div>
+        <div id="svelte-slot" class="slot"></div>
+      </div>
+      <div id="react-slot" class="slot"></div>
+    </div>
+
+    <script type="module">
+      import { registerApplication, start } from "single-spa";
+
+      registerApplication({
+        name: "@org/react-host",
+        app: () => import("./apps/react-wrapper/src/main.tsx"),
+        activeWhen: "/",
+        customProps: {
+          domElement: document.getElementById("react-slot"),
+        },
+      });
+
+      registerApplication({
+        name: "@org/react-trigger",
+        app: () => import("./apps/react-trigger/main.tsx"),
+        activeWhen: "/",
+        customProps: {
+          domElement: document.getElementById("react-trigger-slot"),
+        },
+      });
+
+      registerApplication({
+        name: "@org/vanilla-trigger",
+        app: () => import("./apps/vanilla-trigger/main.ts"),
+        activeWhen: "/",
+        customProps: {
+          domElement: document.getElementById("vanilla-slot"),
+        },
+      });
+
+      registerApplication({
+        name: "@org/preact-trigger",
+        app: () => import("./apps/preact-trigger/src/main.ts"),
+        activeWhen: "/",
+        customProps: {
+          domElement: document.getElementById("preact-slot"),
+        },
+      });
+
+      registerApplication({
+        name: "@org/vue-trigger",
+        app: () => import("./apps/vue-trigger/src/main.ts"),
+        activeWhen: "/",
+        customProps: {
+          domElement: document.getElementById("vue-slot"),
+        },
+      });
+
+      registerApplication({
+        name: "@org/solid-trigger",
+        app: () => import("./apps/solid-trigger/src/main.ts"),
+        activeWhen: "/",
+        customProps: {
+          domElement: document.getElementById("solid-slot"),
+        },
+      });
+
+      registerApplication({
+        name: "@org/svelte-trigger",
+        app: () => import("./apps/svelte-trigger/src/main.ts"),
+        activeWhen: "/",
+        customProps: {
+          domElement: document.getElementById("svelte-slot"),
+        },
+      });
+
+      start();
+    </script>
+  </body>
+</html>

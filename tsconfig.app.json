@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "skipLibCheck": true,
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "strict": true,
+    "types": ["vite/client"],
+
+    /* This is the missing piece */
+    "baseUrl": ".",
+    "paths": {
+      "@org/toast-service": ["./libs/shared-utility/src/toast-service.ts"]
+    }
+  },
+  "include": ["apps/**/*.ts", "apps/**/*.tsx", "libs/**/*.ts"]
+}
